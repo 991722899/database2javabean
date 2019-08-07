@@ -86,6 +86,35 @@
             </div>
         </div>
     </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">模块</label>
+            <div class="layui-input-block">
+                <input type="checkbox" name="models" value="controller" title="controller"  checked="checked">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">包名</label>
+            <div class="layui-input-inline">
+                <input type="text" name="packageName" autocomplete="off" value="com.xinhoo.controller" class="layui-input">
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">模块</label>
+            <div class="layui-input-block">
+                <input type="checkbox" name="models" value="service" title="service"  checked="checked">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">包名</label>
+            <div class="layui-input-inline">
+                <input type="text" name="packageName" autocomplete="off" value="com.xinhoo.service" class="layui-input">
+            </div>
+        </div>
+    </div>
     <div class="layui-form-item" id="tables-view"></div>
 
     <div class="layui-form-item">
@@ -182,6 +211,12 @@
             }
             var data = data.field;
             data.tableNames = tables.join(",");
+            //获取所有的模块和包名
+            var packageName = new Array();
+            $("input[name='models']:checked").each(function(item){
+                packageName.push($(this).siblings("div").find("span").text()+"-"+$(this).parent("div").parent("div").siblings("div").find("input[name='packageName']").val());
+            });
+            data.packageName = packageName.join(",");
 
             window.location.href="/export?"+parseParams(data);
             return false;

@@ -71,29 +71,22 @@ public class IndexController extends BaseController {
             if(!file.exists()){
                 file.mkdirs();
             }
-            //默认包名
-            Map<String,String> defaultPackageName = new HashMap<>();
-            defaultPackageName.put("vo","com".concat(File.separator).concat("xinhoo").concat(File.separator).concat("vo"));
-            defaultPackageName.put("dao","com".concat(File.separator).concat("xinhoo").concat(File.separator).concat("dao"));
-
-            //创建包路径
-
-            File fileDao = new File(file.getPath().concat(File.separator).concat(defaultPackageName.get("dao")));
-            File fileBean = new File(file.getPath().concat(File.separator).concat(defaultPackageName.get("vo")));
-            fileDao.mkdirs();
-            fileBean.mkdirs();
 
             Map<String,Object> map = new HashMap<>();
             map.put("conf",javaBeanConfig);
             for(MetaData m : metaDataList){
-                map.put("data",m);
-                map.put("packageName",defaultPackageName.get("vo").replace(File.separator,"."));
-                String fileName = fileBean.getPath().concat(File.separator).concat(StringUtils.capitalize(m.getTable_name())).concat(".java");
-                createFile(map,fileName,"vo.ftl");
+                for(String str : javaBeanConfig.getPackageName()){
+                    String[]s = str.split("-");
+                    map.put("data",m);
+                    map.put("packageName",s[1]);
 
-                map.put("packageName",defaultPackageName.get("dao").replace(File.separator,"."));
-                fileName = fileDao.getPath().concat(File.separator).concat(StringUtils.capitalize(m.getTable_name())).concat("DAO").concat(".java");
-                createFile(map,fileName,"dao.ftl");
+                    File tempFile = new File(dir.concat(File.separator).concat(s[1].replace(".",File.separator)));
+                    if(!tempFile.exists()){
+                        tempFile.mkdirs();
+                    }
+                    String fileName = tempFile.getPath().concat(File.separator).concat(StringUtils.capitalize(m.getTable_name())).concat(StringUtils.capitalize(s[0])).concat(".java");
+                    createFile(map,fileName,s[0]+".ftl");
+                }
             }
 
             response.reset();
