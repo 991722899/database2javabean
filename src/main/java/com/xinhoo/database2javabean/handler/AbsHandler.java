@@ -116,7 +116,8 @@ public abstract class AbsHandler implements IHandler {
     }
 
     public String dbType2JavaType(String typeName){
-        if(typeName.equals("VARCHAR") || typeName.equals("VARCHAR2") || typeName.equals("CHAR")){
+        typeName = typeName.toUpperCase();
+        if(typeName.indexOf("CHAR")!=-1){
             return "String";
         }else if(typeName.equals("NUMBER") || typeName.equals("DECIMAL")){
             return "Double";

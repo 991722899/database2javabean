@@ -115,6 +115,21 @@
             </div>
         </div>
     </div>
+
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">模块</label>
+            <div class="layui-input-block">
+                <input type="checkbox" name="models" value="mapper" title="mapper"  checked="checked">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">包名</label>
+            <div class="layui-input-inline">
+                <input type="text" name="packageName" autocomplete="off" value="com.xinhoo.mapper" class="layui-input">
+            </div>
+        </div>
+    </div>
     <div class="layui-form-item" id="tables-view"></div>
 
     <div class="layui-form-item">

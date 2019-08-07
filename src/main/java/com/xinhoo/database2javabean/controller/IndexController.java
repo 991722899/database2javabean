@@ -84,7 +84,7 @@ public class IndexController extends BaseController {
                     if(!tempFile.exists()){
                         tempFile.mkdirs();
                     }
-                    String fileName = tempFile.getPath().concat(File.separator).concat(StringUtils.capitalize(m.getTable_name())).concat(StringUtils.capitalize(s[0])).concat(".java");
+                    String fileName = tempFile.getPath().concat(File.separator).concat(StringUtils.capitalize(m.getTable_name())).concat(StringUtils.capitalize(s[0])).concat(s[0].equals("mapper")?".xml":".java");
                     createFile(map,fileName,s[0]+".ftl");
                 }
             }
