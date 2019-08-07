@@ -1,3 +1,2 @@
-1.程序启动类
-    com.xinhoo.database2javabean.Database2javabeanApplication
+1.基于springboot+freemarker+layui的java代码生成器。
     
