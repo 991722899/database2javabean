@@ -37,8 +37,6 @@ public class FileUtil {
     }
 
     public static void main(String[] args) {
-        //删除创建的文件和文件夹
-        //FileUtil.deleteFile(new File("G:\\陈超超-2019-05-13\\database2javabean\\.database2javabeanfiles\\eed81cce-82e6-4a13-9dee-6545a285477e.zip"));
-        FileUtil.deleteFile(new File("G:\\陈超超-2019-05-13\\database2javabean\\.database2javabeanfiles\\eed81cce-82e6-4a13-9dee-6545a285477e"));
+
     }
 }
