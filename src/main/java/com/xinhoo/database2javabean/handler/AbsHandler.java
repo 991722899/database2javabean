@@ -1,6 +1,5 @@
 package com.xinhoo.database2javabean.handler;
 
-import com.sun.xml.internal.ws.api.model.MEP;
 import com.xinhoo.database2javabean.model.DBConfig;
 import com.xinhoo.database2javabean.model.JavaBeanConfig;
 import com.xinhoo.database2javabean.model.MetaColumn;
