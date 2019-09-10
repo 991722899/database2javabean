@@ -187,7 +187,7 @@
         form.on('submit(test)', function(data){
             $.ajax({
                 type: "POST",
-                url: "/test",
+                url: "./test",
                 data: data.field,
                 success: function(data){
                     if(data && data.code=="0"){
@@ -207,7 +207,7 @@
         form.on('submit(loadTables)', function(data){
             $.ajax({
                 type: "POST",
-                url: "/getTableNames",
+                url: "./getTableNames",
                 data: data.field,
                 success: function(data){
                     if(data && data.code=="0"){
@@ -245,7 +245,7 @@
             });
             data.packageName = packageName.join(",");
 
-            window.location.href="/export?"+parseParams(data);
+            window.location.href="./export?"+parseParams(data);
             return false;
         });
 
