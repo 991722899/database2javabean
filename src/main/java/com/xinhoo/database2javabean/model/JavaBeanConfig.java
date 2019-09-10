@@ -7,6 +7,7 @@ package com.xinhoo.database2javabean.model;
  * @date: 2019/5/20 16:40
  */
 public class JavaBeanConfig {
+    private String replaceDBPre;
     private boolean comment;
     private boolean tostring;
     private boolean get;
@@ -52,5 +53,13 @@ public class JavaBeanConfig {
 
     public void setPackageName(String[] packageName) {
         this.packageName = packageName;
+    }
+
+    public String getReplaceDBPre() {
+        return replaceDBPre;
+    }
+
+    public void setReplaceDBPre(String replaceDBPre) {
+        this.replaceDBPre = replaceDBPre;
     }
 }

@@ -1,9 +1,9 @@
 <#if data??>
-    <#assign className = "${data.table_name?cap_first}DAO">
+    <#assign className = "${data.table_name?cap_first}Repository">
     <#assign voName = "${data.table_name?cap_first}">
+package ${packageName};
 
-    package ${packageName};
-    public class ${className} extends AbstractDAO<${voName}> {
+    public class ${className} extends BaseRepository<${voName}> {
 
     }
 </#if>

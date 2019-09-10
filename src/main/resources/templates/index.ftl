@@ -53,6 +53,12 @@
     </div>
 <hr>
     <div class="layui-form-item">
+        <label class="layui-form-label">表名前缀</label>
+        <div class="layui-input-block">
+            <input type="text" name="replaceDBPre" autocomplete="off" placeholder="请输入表前缀" value="" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
         <div class="layui-inline">
             <label class="layui-form-label">模块</label>
             <div class="layui-input-block">

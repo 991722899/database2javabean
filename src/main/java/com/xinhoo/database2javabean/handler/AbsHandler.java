@@ -4,6 +4,7 @@ import com.xinhoo.database2javabean.model.DBConfig;
 import com.xinhoo.database2javabean.model.JavaBeanConfig;
 import com.xinhoo.database2javabean.model.MetaColumn;
 import com.xinhoo.database2javabean.model.MetaData;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -86,7 +87,12 @@ public abstract class AbsHandler implements IHandler {
                 MetaData metaData = new MetaData();
                 String tableName = resultSet.getString("TABLE_NAME");
                 if(tableNames.contains(tableName)){
-                    metaData.setTable_name(tableName);
+                    if(StringUtils.isNotBlank(javaBeanConfig.getReplaceDBPre())){
+                        metaData.setTable_name(tableName.replace(javaBeanConfig.getReplaceDBPre(),""));
+                    }else{
+                        metaData.setTable_name(tableName);
+                    }
+
                     ResultSet rs = dbmd.getColumns(null, "%", tableName, "%");
                     List<MetaColumn> list = new ArrayList<>();
                     while(rs.next()){

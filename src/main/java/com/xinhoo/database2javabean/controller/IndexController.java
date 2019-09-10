@@ -80,11 +80,17 @@ public class IndexController extends BaseController {
                     map.put("data",m);
                     map.put("packageName",s[1]);
 
-                    File tempFile = new File(dir.concat(File.separator).concat(s[1].replace(".",File.separator)));
+                    File tempFile = new File(dir.concat(File.separator).concat(s[1].replace(".",File.separator)).concat(File.separator).concat(m.getTable_name().toLowerCase()));
                     if(!tempFile.exists()){
                         tempFile.mkdirs();
                     }
-                    String fileName = tempFile.getPath().concat(File.separator).concat(StringUtils.capitalize(m.getTable_name())).concat(StringUtils.capitalize(s[0])).concat(s[0].equals("mapper")?".xml":".java");
+                    String  fileName = "";
+                    if(s[0].equals("mapper")){
+                        fileName = tempFile.getPath().concat(File.separator).concat(StringUtils.uncapitalize(m.getTable_name())).concat(".xml");
+                    }else{
+                        fileName = tempFile.getPath().concat(File.separator).concat(StringUtils.capitalize(m.getTable_name())).concat(StringUtils.capitalize(s[0])).concat(".java");
+                    }
+
                     createFile(map,fileName,s[0]+".ftl");
                 }
             }

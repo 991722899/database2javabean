@@ -1,13 +1,12 @@
 <#if data??>
 package ${packageName};
 
-@Table(name = "${data.table_name}")
 public class ${data.table_name?cap_first} {
 <#list data.list as item>
     <#if conf.comment>
     //${item.column_comment!}
     </#if>
-    private ${item.column_dataType} ${item.column_name?uncap_first};
+    private ${item.column_dataType} ${item.column_name?uncap_first} extends BaseModel;
 </#list>
 
     <#assign toS = "\"${data.table_name?cap_first}{\" +\n\t">
@@ -24,7 +23,7 @@ public class ${data.table_name?cap_first} {
         <#assign toS = toS+"\"${item.column_name}='\" + ${item.column_name} + '\\'' +\n\t">
     </#if>
 </#list>
-    <#assign toS = toS+"'}';">
+    <#assign toS = toS+"'}'+super.toString();">
 
 <#if conf.tostring>
     @Override
