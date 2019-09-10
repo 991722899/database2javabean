@@ -59,6 +59,12 @@
         </div>
     </div>
     <div class="layui-form-item">
+        <label class="layui-form-label">过滤列名</label>
+        <div class="layui-input-block">
+            <input type="text" name="filterField" autocomplete="off" placeholder="多个用,号隔开" value="id,createtime,create_user_id,create_user_name,updatetime,update_user_id,update_user_name,status,remarks" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
         <div class="layui-inline">
             <label class="layui-form-label">模块</label>
             <div class="layui-input-block">

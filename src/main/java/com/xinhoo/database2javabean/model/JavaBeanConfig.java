@@ -8,6 +8,7 @@ package com.xinhoo.database2javabean.model;
  */
 public class JavaBeanConfig {
     private String replaceDBPre;
+    private String [] filterField = new String[]{};
     private boolean comment;
     private boolean tostring;
     private boolean get;
@@ -61,5 +62,13 @@ public class JavaBeanConfig {
 
     public void setReplaceDBPre(String replaceDBPre) {
         this.replaceDBPre = replaceDBPre;
+    }
+
+    public String[] getFilterField() {
+        return filterField;
+    }
+
+    public void setFilterField(String[] filterField) {
+        this.filterField = filterField;
     }
 }
