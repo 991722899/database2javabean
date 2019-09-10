@@ -1,5 +1,6 @@
 package com.xinhoo.database2javabean.handler;
 
+import com.sun.xml.internal.ws.api.model.MEP;
 import com.xinhoo.database2javabean.model.DBConfig;
 import com.xinhoo.database2javabean.model.JavaBeanConfig;
 import com.xinhoo.database2javabean.model.MetaColumn;
@@ -89,6 +90,18 @@ public abstract class AbsHandler implements IHandler {
                 if(tableNames.contains(tableName)){
                     if(StringUtils.isNotBlank(javaBeanConfig.getReplaceDBPre())){
                         metaData.setTable_name(tableName.replace(javaBeanConfig.getReplaceDBPre(),""));
+                        if(metaData.getTable_name().indexOf("_")!=-1){
+                            String[]str = metaData.getTable_name().split("_");
+                            String tempName = "";
+                            for(int i=0;i<str.length;i++){
+                                if(i!=0){
+                                    tempName+=StringUtils.capitalize(str[i]);
+                                }else{
+                                    tempName+=StringUtils.capitalize(str[i]);
+                                }
+                            }
+                            metaData.setTable_name(tempName);
+                        }
                     }else{
                         metaData.setTable_name(tableName);
                     }
