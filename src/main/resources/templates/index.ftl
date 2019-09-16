@@ -68,7 +68,7 @@
         <div class="layui-inline">
             <label class="layui-form-label">模块</label>
             <div class="layui-input-block">
-                <input type="checkbox" name="models" value="vo"  checked="checked" title="vo">
+                <input type="checkbox" name="models" value="vo"  checked="checked" title="vo" class="check-box-width">
             </div>
         </div>
         <div class="layui-inline">
@@ -132,7 +132,7 @@
         <div class="layui-inline">
             <label class="layui-form-label">模块</label>
             <div class="layui-input-block">
-                <input type="checkbox" name="models" value="mapper" title="mapper"  checked="checked">
+                <input type="checkbox" name="models" value="mapper" title="mybatis xml"  checked="checked">
             </div>
         </div>
         <div class="layui-inline">
@@ -153,6 +153,7 @@
 <script id="tablesTpl" type="text/html">
     <label class="layui-form-label">选择表</label>
     <div class="layui-input-block">
+        <input type="checkbox" name="selectAll" lay-filter="selectAll" value="全选" title="全选">
         {{#  layui.each(d.data, function(index, item){ }}
             <input type="checkbox" name="tableNames" value="{{item}}" title="{{item}}">
         {{#  }); }}
@@ -181,7 +182,6 @@
             ,layer = layui.layer
             ,$=layui.jquery
             ,laytpl = layui.laytpl;
-
 
 
         form.on('submit(test)', function(data){
@@ -214,6 +214,16 @@
                         laytpl(tablesTpl.innerHTML).render({"data":data.data}, function(html){
                             document.getElementById('tables-view').innerHTML = html;
                             form.render();
+
+                            form.on('checkbox(selectAll)', function(data){
+                                if(data.elem.checked){
+                                    $("#tables-view [type='checkbox']").prop("checked", true);
+                                    form.render();
+                                }else{
+                                    $("#tables-view [type='checkbox']").prop("checked", false);
+                                    form.render();
+                                }
+                            });
                         });
                     }else{
                         layer.alert(data.msg);
