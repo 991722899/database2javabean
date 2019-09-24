@@ -6,7 +6,7 @@
 <mapper namespace="${packageName}.${className}" >
 
     <insert id="save">
-        insert into ${data.table_name}
+        insert into ${conf.replaceDBPre}${data.table_name}
         (
         <#list data.list as item>
             ${item.column_name}<#if item_has_next>,</#if>
@@ -20,7 +20,7 @@
     </insert>
 
     <update id="edit">
-        update ${data.table_name}
+        update ${conf.replaceDBPre}${data.table_name}
         <set>
         <#list data.list as item>
             <#if item.column_name != "id">
@@ -40,11 +40,11 @@
     </update>
 
     <select id="findById" resultType="${voName}">
-        select * from ${data.table_name} where id = ${r'#{'}id${r'}'}
+        select * from ${conf.replaceDBPre}${data.table_name} where id = ${r'#{'}id${r'}'}
     </select>
 
     <select id="findByModel" resultType="${voName}">
-        select * from ${data.table_name} where 1=1
+        select * from ${conf.replaceDBPre}${data.table_name} where 1=1
         <#list data.list as item>
         <#if item.column_dataType=="String">
             <if test="${item.column_name} != null and ${item.column_name} != ''">
@@ -60,7 +60,7 @@
 
 
     <delete id="delete">
-        delete from ${data.table_name}
+        delete from ${conf.replaceDBPre}${data.table_name}
         <choose>
             <when test="ids != null and ids.length >0">
                 where id in
